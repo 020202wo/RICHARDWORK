@@ -1,3 +1,5 @@
 User-agent: *
 Allow: /
-Sitemap: https://020202wo.github.io/RICHARDWORK/sitemap.xml
+
+Sitemap: https://020202wo.github.io/portfolio2/sitemap.xml
+
