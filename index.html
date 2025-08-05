@@ -3,23 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="google-site-verification" content="google0006f75be1a957fc.html">
-
-
-  <!-- Meta para SEO -->
-  <meta name="description" content="Ricardo Francisco é fotógrafo Moçambicano e técnico de redes. Veja seu portfólio, trabalhos em fotografia e serviços oferecidos.">
-  
-  <!-- Meta do Google Search Console (substituir o conteúdo quando verificares o site) -->
-  <meta name="google-site-verification" content="COLOCA_AQUI_O_CODIGO_DO_GOOGLE">
-
-  <title>Ricardo Francisco | Portfólio</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700&display=swap" rel="stylesheet">
+  <title>Ricardo Francisco | Fotógrafo Profissional</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700&display=swap" rel="stylesheet">
   <style>
-    /* ... (estilo igual ao anterior, mantido como está) ... */
     * {
       margin: 0;
       padding: 0;
@@ -27,69 +14,74 @@
       font-family: 'Roboto', sans-serif;
     }
     body {
-      background-color: #00c0ff;
-      color: #f1f1f1;
+      background: #111;
+      color: #eee;
+      scroll-behavior: smooth;
     }
     header {
+      height: 100vh;
+      background: url('imaj/capa.jpg') center/cover no-repeat;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       text-align: center;
-      padding: 20px 5px;
-      background:#343434;
-      color: #fff;
-    }
-    header img.profile {
-      width: 140px;
-      height: 140px;
-      border-radius: 47%;
-      border: 4px solid #fff;
-      margin-bottom: 15px;
+      padding: 0 20px;
     }
     header h1 {
-      font-size: 2.5rem;
-      color:#00b9f6;
+      font-size: 3rem;
+      color: #00bcd4;
+      margin-bottom: 10px;
     }
     header p {
       font-size: 1.2rem;
-      margin-top: 10px;
-      color: white;
+      max-width: 600px;
+    }
+    .hero-subtext {
+      font-size: 1rem;
+      color: #ccc;
+      margin-top: 20px;
+      animation: fadeIn 3s ease-in-out infinite alternate;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0.3; }
+      to { opacity: 1; }
+    }
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(0,0,0,0.8);
+      padding: 10px 0;
+      text-align: center;
+      z-index: 1000;
+    }
+    nav a {
+      color: #00bcd4;
+      text-decoration: none;
+      margin: 0 20px;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: #fff;
     }
     section {
       max-width: 1000px;
-      margin: 40px auto;
-      background: #1c1c1c;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+      margin: 80px auto;
+      padding: 0 20px;
     }
     h2 {
-      color: #4fc3f7;
-      margin-bottom: 15px;
-      border-bottom: 1px solid #444;
-      padding-bottom: 10px;
-    }
-    ul {
-      list-style: none;
-    }
-    li {
-      margin-bottom: 10px;
-    }
-    .social a {
-      color: #4fc3f7;
-      text-decoration: none;
-      margin-right: 15px;
-      font-size: 1.6rem;
-    }
-    .contact a {
-      color: #f1f1f1;
-      text-decoration: none;
+      font-size: 2rem;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #00bcd4;
       display: inline-block;
-      margin-top: 10px;
     }
-    .contact a:hover {
-      text-decoration: underline;
-    }
-    .email-icon {
-      color: #4fc3f7;
-      margin-right: 8px;
+    .about-img {
+      float: right;
+      margin-left: 20px;
+      width: 150px;
+      border-radius: 8px;
     }
     .gallery-grid {
       display: grid;
@@ -106,74 +98,43 @@
       cursor: pointer;
     }
     .gallery-grid img:hover {
-      transform: scale(1.03);
-    }
-    .gallery-grid img:active {
-      transform: scale(0.98);
+      transform: scale(1.05);
     }
     footer {
       text-align: center;
+      padding: 40px 10px;
       font-size: 0.9rem;
-      padding: 20px 10px;
       color: #888;
     }
-    @media(max-width: 600px) {
-      header h1 { font-size: 1.8rem; }
-      section { padding: 20px; }
-    }
   </style>
-
-  <script>
-    function openImage(src) {
-      const overlay = document.createElement('div');
-      overlay.style.position = 'fixed';
-      overlay.style.top = 0;
-      overlay.style.left = 0;
-      overlay.style.width = '100%';
-      overlay.style.height = '100%';
-      overlay.style.background = 'rgba(0,0,0,0.8)';
-      overlay.style.display = 'flex';
-      overlay.style.alignItems = 'center';
-      overlay.style.justifyContent = 'center';
-      overlay.style.zIndex = 1000;
-
-      const img = document.createElement('img');
-      img.src = src;
-      img.style.maxWidth = '90%';
-      img.style.maxHeight = '90%';
-      img.style.borderRadius = '10px';
-
-      overlay.appendChild(img);
-      overlay.onclick = () => document.body.removeChild(overlay);
-      document.body.appendChild(overlay);
-    }
-  </script>
 </head>
 <body>
+  <nav>
+    <a href="#sobre">Sobre</a>
+    <a href="#empresa">Empresa</a>
+    <a href="#galeria">Galeria</a>
+    <a href="#servicos">Preços</a>
+    <a href="#contato">Contato</a>
+  </nav>
+
   <header>
-    <img src="imaj/capa.jpg" alt="Ricardo Francisco" class="profile">
     <h1>Ricardo Francisco</h1>
-    <p>Fotógrafo Moçambicano | Técnico de Redes | Criador da Richards Work Fotografias</p>
+    <p>Fotógrafo Profissional | Chimoio, Moçambique</p>
+    <div class="hero-subtext">Transformando momentos em memórias desde 2020</div>
   </header>
 
-  <section class="info">
+  <section id="sobre">
     <h2>Sobre Mim</h2>
-    <p>Sou um <strong>fotógrafo Moçambicano</strong> residente na cidade de <strong>Chimoio</strong>, província de <strong>Manica</strong>. Capturo momentos únicos com paixão e técnica. Também atuo como <strong>técnico de redes</strong>, oferecendo soluções modernas e confiáveis para ambientes residenciais e empresariais. Meu olhar criativo transforma imagens simples em obras com significado.</p>
+    <img src="imaj/capa.jpg" class="about-img" alt="Ricardo Francisco">
+    <p>Sou Ricardo Francisco, fotógrafo profissional baseado em Chimoio, província de Manica – Moçambique. Tenho experiência desde 2020 com registros fotográficos que unem técnica, sensibilidade e atenção ao detalhe. Meu trabalho abrange desde sessões ao ar livre, eventos, casamentos, estúdio, até edição e tratamento profissional de imagens.</p>
   </section>
 
-  <section class="services">
-    <h2>Serviços</h2>
-    <ul>
-      <li>📸 Sessões fotográficas ao ar livre – a partir de 50MT</li>
-      <li>📷 Ensaios em estúdio e eventos</li>
-      <li>💍 Casamentos e celebrações</li>
-      <li>👶 Fotografia infantil e de família</li>
-      <li>🖼️ Edição profissional e tratamento de imagem</li>
-      <li>🌐 Instalação e manutenção de redes informáticas</li>
-    </ul>
+  <section id="empresa">
+    <h2>Sobre a Empresa</h2>
+    <p>A <strong>Richards Work Fotografias</strong> é um estúdio fotográfico que presta serviços personalizados em Moçambique, atuando com excelência, profissionalismo e responsabilidade. Desde 2020, temos documentado histórias através de imagens com alto padrão de qualidade e criatividade. Atendemos eventos sociais, corporativos, sessões individuais, ensaios familiares e outros. Cada projeto é tratado com dedicação e visão artística única.</p>
   </section>
 
-  <section class="gallery">
+  <section id="galeria" class="gallery">
     <h2>Galeria</h2>
     <p>Explore alguns dos meus trabalhos em diferentes categorias:</p>
     <h3>🌿 Ao Ar Livre</h3>
@@ -194,16 +155,22 @@
     </div>
   </section>
 
-  <section class="contact">
-    <h2>Contato</h2>
-    <p><i class="fas fa-envelope email-icon"></i><a href="mailto:ricardomendesd63@gmail.com">ricardomendesd63@gmail.com</a></p>
-    <p><i class="fab fa-whatsapp"></i> <a href="https://wa.me/258870174748" target="_blank">+258 87 017 4748</a></p>
+  <section id="servicos">
+    <h2>Preços & Serviços</h2>
+    <ul>
+      <li>📸 Sessões fotográficas ao ar livre – a partir de 50MT</li>
+      <li>📷 Ensaios em estúdio e eventos</li>
+      <li>💍 Casamentos e celebrações</li>
+      <li>👶 Fotografia infantil e de família</li>
+      <li>🖼️ Edição profissional e tratamento de imagem</li>
+      <li>🌐 Instalação e manutenção de redes informáticas</li>
+    </ul>
   </section>
 
-  <section class="social">
-    <h2>Redes Sociais</h2>
-    <a href="https://www.instagram.com/richardwfotografias/profilecard/?igsh=OXR2aW5sdnVzaTM2" target="_blank"><i class="fab fa-instagram"></i></a>
-    <a href="https://www.facebook.com/a.magia.da.fotografia.2025" target="_blank"><i class="fab fa-facebook"></i></a>
+  <section id="contato">
+    <h2>Contato</h2>
+    <p>Email: <a href="mailto:ricardomendesd63@gmail.com">ricardomendesd63@gmail.com</a></p>
+    <p>WhatsApp: <a href="https://wa.me/258870174748" target="_blank">+258 87 017 4748</a></p>
   </section>
 
   <footer>
@@ -211,3 +178,4 @@
   </footer>
 </body>
 </html>
+
