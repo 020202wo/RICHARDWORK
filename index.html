@@ -409,6 +409,73 @@
       color: var(--muted);
       text-align: center;
     }
+    /* Lightbox base */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(2, 6, 23, 0.85);
+  display: flex;
+  flex-direction: column; /* Para colocar logo em cima e imagem embaixo */
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+  padding: 20px;
+}
+
+/* Quando abrir */
+.lightbox.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Loading: centralizado */
+.lightbox-loading {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Logo do loading responsivo */
+.loading-logo {
+  max-height: 80px;      /* tamanho ideal no desktop */
+  max-width: 100%;
+  animation: fadeInOut 2s infinite;
+}
+
+/* animação simples fade in e fade out para logo */
+@keyframes fadeInOut {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+/* Imagem ampliada, responsiva */
+.lightbox-inner img {
+  max-width: 90vw;
+  max-height: 90vh;
+  object-fit: contain; /* garante a imagem inteira, sem cortar ou distorcer */
+  border-radius: 12px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.7);
+}
+
+/* Esconde a imagem inicialmente */
+.lightbox-inner {
+  max-width: 90vw;
+  max-height: 90vh;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* Para telas pequenas, diminua o logo */
+@media (max-width: 600px) {
+  .loading-logo {
+    max-height: 50px;
+  }
+}
+
 
     /* responsive */
     @media (max-width: 900px) {
@@ -663,6 +730,18 @@
         </ul>
       </div>
     </article>
+    <!-- LIGHTBOX -->
+<div id="lightbox" class="lightbox" role="dialog" aria-hidden="true">
+  <div class="lightbox-loading">
+    <!-- Coloque aqui o seu logo para o loading -->
+    <!-- Exemplo: substitua "imaj/seu-logo.png" pelo caminho da sua imagem -->
+    <img src="rik.png" alt="Logo Richards Work" class="loading-logo" />
+  </div>
+  <div class="lightbox-inner" style="display:none;">
+    <img src="" alt="Imagem ampliada" />
+  </div>
+</div>
+
 
     <!-- Contato -->
     <article id="contato" class="section-card">
@@ -789,6 +868,46 @@
     window.addEventListener("load", () => {
       document.querySelector(".cover")?.classList.add("loaded");
     });
+    const lightbox = document.getElementById('lightbox');
+const loadingDiv = lightbox.querySelector('.lightbox-loading');
+const lightboxInner = lightbox.querySelector('.lightbox-inner');
+const lbimg = lightboxInner.querySelector('img');
+
+document.querySelectorAll('.thumb').forEach(t => {
+  t.addEventListener('click', () => {
+    const src = t.getAttribute('data-src') || t.querySelector('img').src;
+    lbimg.src = '';             // limpa imagem anterior
+    lightboxInner.style.display = 'none';   // esconde imagem
+    loadingDiv.style.display = 'flex';      // mostra logo de loading
+    lightbox.classList.add('open');
+    lightbox.setAttribute('aria-hidden', 'false');
+
+    // Carrega imagem
+    const img = new Image();
+    img.src = src;
+    img.onload = () => {
+      lbimg.src = src;
+      loadingDiv.style.display = 'none';     // esconde logo
+      lightboxInner.style.display = 'block'; // mostra imagem ampliada
+    };
+  });
+});
+
+lightbox.addEventListener('click', (e) => {
+  if (e.target === lightbox || e.target === lbimg) {
+    lightbox.classList.remove('open');
+    lightbox.setAttribute('aria-hidden', 'true');
+  }
+});
+
+// Fecha com Esc
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    lightbox.classList.remove('open');
+    lightbox.setAttribute('aria-hidden', 'true');
+  }
+});
+
   </script>
 </body>
 </html>
