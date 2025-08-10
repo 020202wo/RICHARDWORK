@@ -409,13 +409,41 @@
       color: var(--muted);
       text-align: center;
     }
+
+}
+
+
+    /* responsive */
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+      .hero-right {
+        order: -1;
+      }
+      .brand p {
+        display: none;
+      }
+      .menu {
+        display: none;
+      }
+      .hamburger {
+        display: block;
+        background: var(--glass);
+        padding: 10px;
+        border-radius: 10px;
+      }
+      .nav-actions {
+        gap: 8px;
+      }
+    }
     /* Lightbox base */
 .lightbox {
   position: fixed;
   inset: 0;
   background: rgba(2, 6, 23, 0.85);
   display: flex;
-  flex-direction: column; /* Para colocar logo em cima e imagem embaixo */
+  flex-direction: column; /* logo em cima, imagem embaixo */
   align-items: center;
   justify-content: center;
   z-index: 2000;
@@ -431,7 +459,7 @@
   pointer-events: auto;
 }
 
-/* Loading: centralizado */
+/* Loading (logo animado) centralizado */
 .lightbox-loading {
   margin-bottom: 20px;
   display: flex;
@@ -461,7 +489,7 @@
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.7);
 }
 
-/* Esconde a imagem inicialmente */
+/* Container da imagem */
 .lightbox-inner {
   max-width: 90vw;
   max-height: 90vh;
@@ -476,31 +504,6 @@
   }
 }
 
-
-    /* responsive */
-    @media (max-width: 900px) {
-      .hero {
-        grid-template-columns: 1fr;
-      }
-      .hero-right {
-        order: -1;
-      }
-      .brand p {
-        display: none;
-      }
-      .menu {
-        display: none;
-      }
-      .hamburger {
-        display: block;
-        background: var(--glass);
-        padding: 10px;
-        border-radius: 10px;
-      }
-      .nav-actions {
-        gap: 8px;
-      }
-    }
   </style>
 </head>
 <body>
@@ -730,15 +733,14 @@
         </ul>
       </div>
     </article>
-    <!-- LIGHTBOX -->
-<div id="lightbox" class="lightbox" role="dialog" aria-hidden="true">
+  <!-- LIGHTBOX -->
+<div id="lightbox" class="lightbox" role="dialog" aria-hidden="true" aria-label="Visualizador de imagens">
   <div class="lightbox-loading">
-    <!-- Coloque aqui o seu logo para o loading -->
-    <!-- Exemplo: substitua "imaj/seu-logo.png" pelo caminho da sua imagem -->
-    <img src="rik.png" alt="Logo Richards Work" class="loading-logo" />
+    <!-- Coloque seu logo aqui, o arquivo rik.png deve estar na mesma pasta do index.html -->
+    <img src="rik.png" alt="Richards Work Logo" class="loading-logo">
   </div>
-  <div class="lightbox-inner" style="display:none;">
-    <img src="" alt="Imagem ampliada" />
+  <div class="lightbox-inner">
+    <img src="" alt="Imagem ampliada">
   </div>
 </div>
 
@@ -793,13 +795,46 @@
     Desenvolvido por Ricardo Francisco — 2025 © Todos os direitos reservados
   </footer>
 
-  <!-- LIGHTBOX -->
-  <div id="lightbox" class="lightbox" role="dialog" aria-hidden="true">
-    <div class="lightbox-loading">Richards Work</div>
-    <div class="lightbox-inner"><img src="" alt="Imagem ampliada" /></div>
-  </div>
-
   <script>
+    const lightbox = document.getElementById('lightbox');
+const loadingLogo = lightbox.querySelector('.lightbox-loading');
+const lightboxInner = lightbox.querySelector('.lightbox-inner img');
+
+document.querySelectorAll('.thumb').forEach(t => {
+  t.addEventListener('click', () => {
+    // Abre lightbox e mostra o logo animado
+    lightbox.classList.add('open');
+    lightbox.setAttribute('aria-hidden', 'false');
+    loadingLogo.style.display = 'flex';  // mostra o logo
+    lightboxInner.style.display = 'none'; // esconde a imagem enquanto carrega
+
+    // Pega a imagem a ser exibida
+    const src = t.getAttribute('data-src') || t.querySelector('img').src;
+    lightboxInner.src = src;
+
+    // Quando a imagem carregar, esconde o logo e mostra a imagem
+    lightboxInner.onload = () => {
+      loadingLogo.style.display = 'none';
+      lightboxInner.style.display = 'block';
+    }
+  });
+});
+
+// Fecha lightbox ao clicar fora da imagem ou apertar ESC
+lightbox.addEventListener('click', e => {
+  if (e.target === lightbox || e.target === lightboxInner) {
+    lightbox.classList.remove('open');
+    lightbox.setAttribute('aria-hidden', 'true');
+  }
+});
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    lightbox.classList.remove('open');
+    lightbox.setAttribute('aria-hidden', 'true');
+  }
+});
+
     // toggle collapsible sections with smooth top-down reveal
     document.querySelectorAll("[data-toggle]").forEach((btn) => {
       btn.addEventListener("click", () => {
