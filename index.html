@@ -6,444 +6,343 @@
   <title>Ricardo Francisco | Richards Work Fotografias</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700;800&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --bg: #080909;
-      --card: #0f1112aa;
-      --accent: #00d0d6;
-      --muted: #a8b3b8;
-      --glass: rgba(255, 255, 255, 0.04);
-      --glass-2: rgba(255, 255, 255, 0.02);
-    }
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: "Inter", system-ui, Arial;
-    }
-    html,
-    body {
-      height: 100%;
-      background: linear-gradient(180deg, #070809 0%, #0b0c0d 70%);
-      color: #e9eef0;
-      scroll-behavior: smooth;
-    }
-
-    /* NAV */
-    nav {
-      position: fixed;
-      left: 0;
-      right: 0;
-      top: 18px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px 20px;
-      z-index: 999;
-    }
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .logo {
-      width: 54px;
-      height: 54px;
-      border-radius: 12px;
-      background: linear-gradient(135deg, var(--accent), #3b82f6);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
-      font-weight: 800;
-    }
-    .brand h4 {
-      font-size: 1rem;
-      color: var(--accent);
-      letter-spacing: 0.6px;
-    }
-    .brand p {
-      font-size: 0.75rem;
-      color: var(--muted);
-      margin-top: 2px;
-    }
-
-    .nav-actions {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-    }
-    .nav-btn {
-      background: var(--glass);
-      backdrop-filter: blur(6px);
-      border-radius: 999px;
-      padding: 10px 14px;
-      color: var(--accent);
-      border: 1px solid rgba(0, 0, 0, 0.4);
-      cursor: pointer;
-      display: inline-flex;
-      gap: 8px;
-      align-items: center;
-    }
-    .nav-btn i {
-      width: 18px;
-    }
-    .menu {
-      display: flex;
-      gap: 8px;
-    }
-
-    /* MOBILE */
-    .hamburger {
-      display: none;
-      background: transparent;
-      border: 1px solid transparent;
-    }
-
-    header {
-      height: 92vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-    }
-    .hero {
-      max-width: 1100px;
-      width: 100%;
-      display: grid;
-      grid-template-columns: 1fr 420px;
-      gap: 36px;
-      align-items: center;
-    }
-
-    .hero-left {
-      padding: 28px;
-      background: linear-gradient(180deg, var(--glass), transparent);
-      border-radius: 18px;
-      box-shadow: 0 12px 40px rgba(2, 6, 23, 0.6);
-      border: 1px solid rgba(255, 255, 255, 0.03);
-    }
-    .eyebrow {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      color: var(--muted);
-      font-size: 0.9rem;
-    }
-    .eyebrow i {
-      color: var(--accent);
-    }
-    h1 {
-      font-size: 2.6rem;
-      color: #fff;
-      margin-top: 14px;
-      line-height: 1.02;
-    }
-    p.lead {
-      color: var(--muted);
-      margin-top: 14px;
-      font-size: 1rem;
-    }
-    .cta-row {
-      margin-top: 22px;
-      display: flex;
-      gap: 12px;
-    }
-    .btn {
-      padding: 12px 16px;
-      border-radius: 12px;
-      border: none;
-      cursor: pointer;
-      font-weight: 600;
-    }
-    .btn-primary {
-      background: linear-gradient(90deg, var(--accent), #3b82f6);
-      color: #041018;
-      box-shadow: 0 10px 30px rgba(0, 208, 214, 0.12);
-    }
-    .btn-ghost {
-      background: transparent;
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      color: var(--muted);
-    }
-
-    .hero-right {
-      position: relative;
-    }
-    .hero-card {
-      border-radius: 16px;
-      overflow: hidden;
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent);
-      padding: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.04);
-    }
-    .cover {
-      width: 100%;
-      height: 420px;
-      background: url("imaj/capa.jpg") center/cover no-repeat;
-      border-radius: 12px;
-      transform-origin: center;
-      transition: transform 0.6s cubic-bezier(0.2, 0.9, 0.3, 1);
-    }
-    .cover:hover {
-      transform: scale(1.03) rotate(-0.6deg);
-    }
-    .meta {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 12px;
-    }
-    .meta .info {
-      color: var(--muted);
-      font-size: 0.9rem;
-    }
-
-    /* SECTIONS (hidden by default) */
-    main {
-      max-width: 1100px;
-      margin: 40px auto;
-      padding: 0 20px;
-    }
-    .section-card {
-      background: linear-gradient(180deg, var(--glass), transparent);
-      border-radius: 12px;
-      padding: 18px;
-      margin-bottom: 20px;
-      border: 1px solid rgba(255, 255, 255, 0.03);
-      overflow: hidden;
-    }
-    .section-title {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      cursor: pointer;
-    }
-    .section-title h2 {
-      font-size: 1.3rem;
-      color: #fff;
-    }
-    .chev {
-      color: var(--accent);
-      transition: transform 0.35s;
-    }
-
-    .collapsible {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.6s cubic-bezier(0.2, 0.9, 0.3, 1);
-    }
-    .collapsible.open {
-      max-height: 1200px;
-    }
-
-    /* about */
-    .about {
-      display: flex;
-      gap: 20px;
-      align-items: flex-start;
-    }
-    .about img {
-      width: 160px;
-      border-radius: 10px;
-      object-fit: cover;
-    }
-    .about p {
-      color: var(--muted);
-      line-height: 1.6;
-    }
-
-    /* gallery */
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 12px;
-      margin-top: 14px;
-    }
-    .thumb {
-      position: relative;
-      border-radius: 10px;
-      overflow: hidden;
-      cursor: pointer;
-    }
-    .thumb img {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
-      display: block;
-      transition: transform 0.35s, filter 0.35s;
-    }
-    .thumb::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.35));
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-    .thumb:hover img {
-      transform: scale(1.08);
-      filter: brightness(0.95);
-    }
-    .thumb:hover::after {
-      opacity: 1;
-    }
-    .thumb .tag {
-      position: absolute;
-      left: 10px;
-      bottom: 10px;
-      background: rgba(0, 0, 0, 0.45);
-      padding: 6px 8px;
-      border-radius: 999px;
-      font-size: 0.85rem;
-    }
-
-    /* lightbox */
-    .lightbox {
-      position: fixed;
-      inset: 0;
-      background: rgba(2, 6, 23, 0.85);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 2000;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.25s;
-      flex-direction: column;
-      color: var(--accent);
-      font-size: 2rem;
-      font-weight: 700;
-      font-family: "Inter", sans-serif;
-    }
-    .lightbox.open {
-      opacity: 1;
-      pointer-events: auto;
-    }
-    .lightbox-inner {
-      max-width: 90vw;
-      max-height: 80vh;
-      border-radius: 12px;
-      overflow: hidden;
-      animation: pop 0.35s;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .lightbox img {
-      display: block;
-      max-width: 100%;
-      max-height: 100%;
-      object-fit: contain;
-      user-select: none;
-      pointer-events: none;
-    }
-    .lightbox-loading {
-      margin-bottom: 20px;
-      font-size: 2.5rem;
-      letter-spacing: 0.12em;
-      animation: blink 1.2s steps(2, start) infinite;
-    }
-    @keyframes pop {
-      from {
-        transform: translateY(12px) scale(0.98);
-        opacity: 0;
-      }
-      to {
-        transform: none;
-        opacity: 1;
-      }
-    }
-    @keyframes blink {
-      0%,
-      100% {
-        opacity: 1;
-      }
-      50% {
-        opacity: 0;
-      }
-    }
-
-    /* price */
-    .prices {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 12px;
-      margin-top: 12px;
-    }
-    .price-card {
-      background: linear-gradient(180deg, #071014, #071217);
-      padding: 12px;
-      border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.02);
-    }
-    .price-card h4 {
-      color: var(--accent);
-    }
-    .price-card p {
-      color: var(--muted);
-      font-size: 0.95rem;
-    }
-
-    /* contacto */
-    .contact-row {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-top: 12px;
-    }
-    .contact-card {
-      display: flex;
-      gap: 12px;
-      align-items: center;
-      background: var(--glass-2);
-      padding: 10px;
-      border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.02);
-    }
-
-    footer {
-      max-width: 1100px;
-      margin: 20px auto 60px;
-      padding: 0 20px;
-      color: var(--muted);
-      text-align: center;
-    }
-
+    <style>
+:root {
+  --bg: #080909;
+  --card: #0f1112aa;
+  --accent: #00d0d6;
+  --muted: #a8b3b8;
+  --glass: rgba(255, 255, 255, 0.04);
+  --glass-2: rgba(255, 255, 255, 0.02);
 }
 
+/* Reset e base */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", system-ui, Arial, sans-serif;
+}
 
-    /* responsive */
-    @media (max-width: 900px) {
-      .hero {
-        grid-template-columns: 1fr;
-      }
-      .hero-right {
-        order: -1;
-      }
-      .brand p {
-        display: none;
-      }
-      .menu {
-        display: none;
-      }
-      .hamburger {
-        display: block;
-        background: var(--glass);
-        padding: 10px;
-        border-radius: 10px;
-      }
-      .nav-actions {
-        gap: 8px;
-      }
-    }
-    /* Lightbox base */
+html,
+body {
+  height: 100%;
+  background: linear-gradient(180deg, #070809 0%, #0b0c0d 70%);
+  color: #e9eef0;
+  scroll-behavior: smooth;
+}
+
+/* NAV */
+nav {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  z-index: 999;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo {
+  width: 54px;
+  height: 54px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--accent), #3b82f6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+  font-weight: 800;
+}
+
+.brand h4 {
+  font-size: 1rem;
+  color: var(--accent);
+  letter-spacing: 0.6px;
+}
+
+.brand p {
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+.nav-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.nav-btn {
+  background: var(--glass);
+  backdrop-filter: blur(6px);
+  border-radius: 999px;
+  padding: 10px 14px;
+  color: var(--accent);
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.nav-btn i {
+  width: 18px;
+}
+
+.menu {
+  display: flex;
+  gap: 8px;
+}
+
+/* MOBILE */
+.hamburger {
+  display: none;
+  background: transparent;
+  border: 1px solid transparent;
+}
+
+/* HEADER / HERO */
+header {
+  height: 92vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.hero {
+  max-width: 1100px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 36px;
+  align-items: center;
+}
+
+.hero-left {
+  padding: 28px;
+  background: linear-gradient(180deg, var(--glass), transparent);
+  border-radius: 18px;
+  box-shadow: 0 12px 40px rgba(2, 6, 23, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.eyebrow i {
+  color: var(--accent);
+}
+
+h1 {
+  font-size: 2.6rem;
+  color: #fff;
+  margin-top: 14px;
+  line-height: 1.02;
+}
+
+p.lead {
+  color: var(--muted);
+  margin-top: 14px;
+  font-size: 1rem;
+}
+
+.cta-row {
+  margin-top: 22px;
+  display: flex;
+  gap: 12px;
+}
+
+.btn {
+  padding: 12px 16px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.btn-primary {
+  background: linear-gradient(90deg, var(--accent), #3b82f6);
+  color: #041018;
+  box-shadow: 0 10px 30px rgba(0, 208, 214, 0.12);
+}
+
+.btn-ghost {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  color: var(--muted);
+}
+
+.hero-right {
+  position: relative;
+}
+
+.hero-card {
+  border-radius: 16px;
+  overflow: hidden;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent);
+  padding: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.cover {
+  width: 100%;
+  height: 420px;
+  background: url("imaj/capa.jpg") center/cover no-repeat;
+  border-radius: 12px;
+  transform-origin: center;
+  transition: transform 0.6s cubic-bezier(0.2, 0.9, 0.3, 1);
+}
+
+.cover:hover {
+  transform: scale(1.03) rotate(-0.6deg);
+}
+
+.meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+}
+
+.meta .info {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+/* MAIN SECTIONS */
+main {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.section-card {
+  background: linear-gradient(180deg, var(--glass), transparent);
+  border-radius: 12px;
+  padding: 18px;
+  margin-bottom: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  overflow: hidden;
+}
+
+.section-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.section-title h2 {
+  font-size: 1.3rem;
+  color: #fff;
+}
+
+.chev {
+  color: var(--accent);
+  transition: transform 0.35s;
+}
+
+.collapsible {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.6s cubic-bezier(0.2, 0.9, 0.3, 1);
+}
+
+.collapsible.open {
+  max-height: 1200px;
+}
+
+/* ABOUT */
+.about {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.about img {
+  width: 160px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.about p {
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+/* GALLERY */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.thumb {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.thumb img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.35s, filter 0.35s;
+}
+
+.thumb::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.35));
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.thumb:hover img {
+  transform: scale(1.08);
+  filter: brightness(0.95);
+}
+
+.thumb:hover::after {
+  opacity: 1;
+}
+
+.thumb .tag {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  background: rgba(0, 0, 0, 0.45);
+  padding: 6px 8px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+}
+
+/* LIGHTBOX */
 .lightbox {
   position: fixed;
   inset: 0;
   background: rgba(2, 6, 23, 0.85);
   display: flex;
-  flex-direction: column; /* logo em cima, imagem embaixo */
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   z-index: 2000;
@@ -451,15 +350,17 @@
   pointer-events: none;
   transition: opacity 0.25s ease;
   padding: 20px;
+  color: var(--accent);
+  font-size: 2rem;
+  font-weight: 700;
+  font-family: "Inter", sans-serif;
 }
 
-/* Quando abrir */
 .lightbox.open {
   opacity: 1;
   pointer-events: auto;
 }
 
-/* Loading (logo animado) centralizado */
 .lightbox-loading {
   margin-bottom: 20px;
   display: flex;
@@ -467,45 +368,132 @@
   align-items: center;
 }
 
-/* Logo do loading responsivo */
 .loading-logo {
-  max-height: 80px;      /* tamanho ideal no desktop */
+  max-height: 80px;
   max-width: 100%;
   animation: fadeInOut 2s infinite;
 }
 
-/* animação simples fade in e fade out para logo */
 @keyframes fadeInOut {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.3; }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
 }
 
-/* Imagem ampliada, responsiva */
-.lightbox-inner img {
-  max-width: 90vw;
-  max-height: 90vh;
-  object-fit: contain; /* garante a imagem inteira, sem cortar ou distorcer */
-  border-radius: 12px;
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.7);
-}
-
-/* Container da imagem */
 .lightbox-inner {
   max-width: 90vw;
   max-height: 90vh;
   border-radius: 12px;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* Para telas pequenas, diminua o logo */
+.lightbox-inner img {
+  max-width: 90vw;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.7);
+  user-select: none;
+  pointer-events: none;
+}
+
+/* PRICES */
+.prices {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.price-card {
+  background: linear-gradient(180deg, #071014, #071217);
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.02);
+}
+
+.price-card h4 {
+  color: var(--accent);
+}
+
+.price-card p {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+/* CONTACT */
+.contact-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+
+.contact-card {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  background: var(--glass-2);
+  padding: 10px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.02);
+}
+
+/* FOOTER */
+footer {
+  max-width: 1100px;
+  margin: 20px auto 60px;
+  padding: 0 20px;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-right {
+    order: -1;
+  }
+
+  .brand p {
+    display: none;
+  }
+
+  .menu {
+    display: none;
+  }
+
+  .hamburger {
+    display: block;
+    background: var(--glass);
+    padding: 10px;
+    border-radius: 10px;
+  }
+
+  .nav-actions {
+    gap: 8px;
+  }
+}
+
 @media (max-width: 600px) {
   .loading-logo {
     max-height: 50px;
   }
 }
 
-  </style>
 </head>
+</head>
+
 <body>
   <nav>
     <div class="brand">
@@ -538,6 +526,7 @@
         class="nav-btn"
         href="https://www.facebook.com/a.magia.da.fotografia.2025/"
         target="_blank"
+        rel="noopener noreferrer"
       >
         <i class="fa-brands fa-facebook-f"></i> Facebook
       </a>
@@ -551,8 +540,8 @@
     <div class="hero">
       <div class="hero-left">
         <div class="eyebrow">
-          <i class="fa-solid fa-camera-retro"></i
-          ><span>Fotógrafo Profissional • Chimoio</span>
+          <i class="fa-solid fa-camera-retro"></i>
+          <span>Fotógrafo Profissional • Chimoio</span>
         </div>
         <h1>Ricardo Francisco</h1>
         <p class="lead">
@@ -571,9 +560,7 @@
           </button>
         </div>
 
-        <div
-          style="margin-top: 16px; color: var(--muted); font-size: 0.9rem"
-        >
+        <div style="margin-top: 16px; color: var(--muted); font-size: 0.9rem">
           Local: Chimoio — Desde 2020 • Atendimento personalizado
         </div>
       </div>
@@ -711,7 +698,7 @@
         <div class="prices" style="margin-top: 12px">
           <div class="price-card">
             <h4>📸 Sessões ao ar livre</h4>
-            <p>a partir de <strong>50 MT</strong> • includes edição básica</p>
+            <p>a partir de <strong>50 MT</strong> • inclui edição básica</p>
           </div>
           <div class="price-card">
             <h4>📷 Estúdio & Ensaios</h4>
@@ -733,17 +720,6 @@
         </ul>
       </div>
     </article>
-  <!-- LIGHTBOX -->
-<div id="lightbox" class="lightbox" role="dialog" aria-hidden="true" aria-label="Visualizador de imagens">
-  <div class="lightbox-loading">
-    <!-- Coloque seu logo aqui, o arquivo rik.png deve estar na mesma pasta do index.html -->
-    <img src="rik.png" alt="Richards Work Logo" class="loading-logo">
-  </div>
-  <div class="lightbox-inner">
-    <img src="" alt="Imagem ampliada">
-  </div>
-</div>
-
 
     <!-- Contato -->
     <article id="contato" class="section-card">
@@ -766,6 +742,7 @@
             class="contact-card"
             href="https://wa.me/258870174748"
             target="_blank"
+            rel="noopener noreferrer"
           >
             <i class="fa-brands fa-whatsapp"></i>
             <div>
@@ -777,6 +754,7 @@
             class="contact-card"
             href="https://www.facebook.com/a.magia.da.fotografia.2025/"
             target="_blank"
+            rel="noopener noreferrer"
           >
             <i class="fa-brands fa-facebook-f"></i>
             <div>
@@ -791,102 +769,56 @@
     </article>
   </main>
 
+  <!-- Lightbox -->
+  <div
+    id="lightbox"
+    class="lightbox"
+    role="dialog"
+    aria-hidden="true"
+    aria-label="Visualizador de imagens"
+  >
+    <div class="lightbox-loading">
+      <!-- Logo animado -->
+      <img src="rik.png" alt="Richards Work Logo" class="loading-logo" />
+    </div>
+    <div class="lightbox-inner">
+      <img src="" alt="Imagem ampliada" />
+    </div>
+  </div>
+
   <footer>
     Desenvolvido por Ricardo Francisco — 2025 © Todos os direitos reservados
   </footer>
 
   <script>
-    const lightbox = document.getElementById('lightbox');
-const loadingLogo = lightbox.querySelector('.lightbox-loading');
-const lightboxInner = lightbox.querySelector('.lightbox-inner img');
-
-document.querySelectorAll('.thumb').forEach(t => {
-  t.addEventListener('click', () => {
-    // Abre lightbox e mostra o logo animado
-    lightbox.classList.add('open');
-    lightbox.setAttribute('aria-hidden', 'false');
-    loadingLogo.style.display = 'flex';  // mostra o logo
-    lightboxInner.style.display = 'none'; // esconde a imagem enquanto carrega
-
-    // Pega a imagem a ser exibida
-    const src = t.getAttribute('data-src') || t.querySelector('img').src;
-    lightboxInner.src = src;
-
-    // Quando a imagem carregar, esconde o logo e mostra a imagem
-    lightboxInner.onload = () => {
-      loadingLogo.style.display = 'none';
-      lightboxInner.style.display = 'block';
-    }
-  });
-});
-
-// Fecha lightbox ao clicar fora da imagem ou apertar ESC
-lightbox.addEventListener('click', e => {
-  if (e.target === lightbox || e.target === lightboxInner) {
-    lightbox.classList.remove('open');
-    lightbox.setAttribute('aria-hidden', 'true');
-  }
-});
-
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') {
-    lightbox.classList.remove('open');
-    lightbox.setAttribute('aria-hidden', 'true');
-  }
-});
-
-    // toggle collapsible sections with smooth top-down reveal
-    document.querySelectorAll("[data-toggle]").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const id = btn.getAttribute("data-toggle");
-        const content = document.getElementById(id + "-c");
-        const open = content.classList.contains("open");
-        // close all
-        document.querySelectorAll(".collapsible").forEach((c) => c.classList.remove("open"));
-        document.querySelectorAll(".chev").forEach((ch) => (ch.style.transform = "rotate(0deg)"));
-        if (!open) {
-          content.classList.add("open");
-          btn.querySelector(".chev")?.style.setProperty("transform", "rotate(180deg)");
-          // smooth scroll so reveal animates from top
-          setTimeout(() => content.scrollIntoView({ behavior: "smooth", block: "start" }), 120);
-        }
-      });
-    });
-
-    // nav buttons in top menu
-    document.querySelectorAll(".nav-btn[data-target]").forEach((b) => {
-      b.addEventListener("click", (e) => {
-        const t = b.getAttribute("data-target");
-        document.querySelector('[data-toggle="' + t + '"]')?.click();
-      });
-    });
-
-    // thumbnails open lightbox with loading text first
+    // Seleção dos elementos do lightbox
     const lightbox = document.getElementById("lightbox");
-    const lbimg = lightbox.querySelector("img");
-    const loadingText = lightbox.querySelector(".lightbox-loading");
+    const loadingDiv = lightbox.querySelector(".lightbox-loading");
+    const lightboxInner = lightbox.querySelector(".lightbox-inner");
+    const lbimg = lightboxInner.querySelector("img");
 
+    // Abrir lightbox ao clicar em thumbs
     document.querySelectorAll(".thumb").forEach((t) => {
       t.addEventListener("click", () => {
         const src = t.getAttribute("data-src") || t.querySelector("img").src;
-
-        lbimg.style.display = "none";
-        loadingText.style.display = "block";
+        lbimg.src = ""; // limpa imagem anterior
+        lightboxInner.style.display = "none"; // esconde imagem
+        loadingDiv.style.display = "flex"; // mostra logo de loading
         lightbox.classList.add("open");
         lightbox.setAttribute("aria-hidden", "false");
 
-        // Simular delay para exibir loading, depois mostrar imagem
-        setTimeout(() => {
+        // Carrega a imagem
+        const img = new Image();
+        img.src = src;
+        img.onload = () => {
           lbimg.src = src;
-          lbimg.onload = () => {
-            loadingText.style.display = "none";
-            lbimg.style.display = "block";
-          };
-        }, 1500);
+          loadingDiv.style.display = "none"; // esconde logo
+          lightboxInner.style.display = "block"; // mostra imagem ampliada
+        };
       });
     });
 
-    // close lightbox on click outside image or on image
+    // Fecha lightbox ao clicar fora da imagem ou na imagem
     lightbox.addEventListener("click", (e) => {
       if (e.target === lightbox || e.target === lbimg) {
         lightbox.classList.remove("open");
@@ -894,56 +826,46 @@ document.addEventListener('keydown', e => {
       }
     });
 
-    // keyboard escape to close
+    // Fecha lightbox com ESC
     document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") lightbox.classList.remove("open");
+      if (e.key === "Escape") {
+        lightbox.classList.remove("open");
+        lightbox.setAttribute("aria-hidden", "true");
+      }
     });
 
-    // small enhancement: reveal hero cover with slight delay
+    // Toggle das seções colapsáveis
+    document.querySelectorAll("[data-toggle]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const id = btn.getAttribute("data-toggle");
+        const content = document.getElementById(id + "-c");
+        const isOpen = content.classList.contains("open");
+
+        // Fecha todas
+        document.querySelectorAll(".collapsible").forEach((c) => c.classList.remove("open"));
+        document.querySelectorAll(".chev").forEach((ch) => (ch.style.transform = "rotate(0deg)"));
+
+        // Abre só a selecionada, se não estava aberta
+        if (!isOpen) {
+          content.classList.add("open");
+          btn.querySelector(".chev")?.style.setProperty("transform", "rotate(180deg)");
+          setTimeout(() => content.scrollIntoView({ behavior: "smooth", block: "start" }), 120);
+        }
+      });
+    });
+
+    // Botões do menu navegação abrem as seções correspondentes
+    document.querySelectorAll(".nav-btn[data-target]").forEach((b) => {
+      b.addEventListener("click", () => {
+        const t = b.getAttribute("data-target");
+        document.querySelector('[data-toggle="' + t + '"]')?.click();
+      });
+    });
+
+    // Animação ao carregar página: revela a cover da hero
     window.addEventListener("load", () => {
       document.querySelector(".cover")?.classList.add("loaded");
     });
-    const lightbox = document.getElementById('lightbox');
-const loadingDiv = lightbox.querySelector('.lightbox-loading');
-const lightboxInner = lightbox.querySelector('.lightbox-inner');
-const lbimg = lightboxInner.querySelector('img');
-
-document.querySelectorAll('.thumb').forEach(t => {
-  t.addEventListener('click', () => {
-    const src = t.getAttribute('data-src') || t.querySelector('img').src;
-    lbimg.src = '';             // limpa imagem anterior
-    lightboxInner.style.display = 'none';   // esconde imagem
-    loadingDiv.style.display = 'flex';      // mostra logo de loading
-    lightbox.classList.add('open');
-    lightbox.setAttribute('aria-hidden', 'false');
-
-    // Carrega imagem
-    const img = new Image();
-    img.src = src;
-    img.onload = () => {
-      lbimg.src = src;
-      loadingDiv.style.display = 'none';     // esconde logo
-      lightboxInner.style.display = 'block'; // mostra imagem ampliada
-    };
-  });
-});
-
-lightbox.addEventListener('click', (e) => {
-  if (e.target === lightbox || e.target === lbimg) {
-    lightbox.classList.remove('open');
-    lightbox.setAttribute('aria-hidden', 'true');
-  }
-});
-
-// Fecha com Esc
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') {
-    lightbox.classList.remove('open');
-    lightbox.setAttribute('aria-hidden', 'true');
-  }
-});
-
   </script>
 </body>
 </html>
-
