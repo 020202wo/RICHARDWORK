@@ -24,8 +24,6 @@
   padding: 0;
   font-family: "Inter", system-ui, Arial, sans-serif;
 }
-
-html,
 body {
   height: 100%;
   background: linear-gradient(180deg, #070809 0%, #0b0c0d 70%);
@@ -337,73 +335,6 @@ main {
   font-size: 0.85rem;
 }
 
-/* LIGHTBOX */
-.lightbox {
-  position: fixed;
-  inset: 0;
-  background: rgba(2, 6, 23, 0.85);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  z-index: 2000;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.25s ease;
-  padding: 20px;
-  color: var(--accent);
-  font-size: 2rem;
-  font-weight: 700;
-  font-family: "Inter", sans-serif;
-}
-
-.lightbox.open {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.lightbox-loading {
-  margin-bottom: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.loading-logo {
-  max-height: 80px;
-  max-width: 100%;
-  animation: fadeInOut 2s infinite;
-}
-
-@keyframes fadeInOut {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.3;
-  }
-}
-
-.lightbox-inner {
-  max-width: 90vw;
-  max-height: 90vh;
-  border-radius: 12px;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.lightbox-inner img {
-  max-width: 90vw;
-  max-height: 90vh;
-  object-fit: contain;
-  border-radius: 12px;
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.7);
-  user-select: none;
-  pointer-events: none;
-}
 
 /* PRICES */
 .prices {
@@ -789,6 +720,49 @@ footer {
   <footer>
     Desenvolvido por Ricardo Francisco — 2025 © Todos os direitos reservados
   </footer>
+        <script>
+    // Seleção dos elementos do lightbox
+    const lightbox = document.getElementById("lightbox");
+    const loadingDiv = lightbox.querySelector(".lightbox-loading");
+    const lightboxInner = lightbox.querySelector(".lightbox-inner");
+    const lbimg = lightboxInner.querySelector("img");
+
+    // Abrir lightbox ao clicar em thumbs
+    document.querySelectorAll(".thumb").forEach((t) => {
+      t.addEventListener("click", () => {
+        const src = t.getAttribute("data-src") || t.querySelector("img").src;
+        lbimg.src = ""; // limpa imagem anterior
+        lightboxInner.style.display = "none"; // esconde imagem
+        loadingDiv.style.display = "flex"; // mostra logo de loading
+        lightbox.classList.add("open");
+        lightbox.setAttribute("aria-hidden", "false");
+
+        // Carrega a imagem
+        const img = new Image();
+        img.src = src;
+        img.onload = () => {
+          lbimg.src = src;
+          loadingDiv.style.display = "none"; // esconde logo
+          lightboxInner.style.display = "block"; // mostra imagem ampliada
+        };
+      });
+    });
+
+    // Fecha lightbox ao clicar fora da imagem ou na imagem
+    lightbox.addEventListener("click", (e) => {
+      if (e.target === lightbox || e.target === lbimg) {
+        lightbox.classList.remove("open");
+        lightbox.setAttribute("aria-hidden", "true");
+      }
+    });
+
+    // Fecha lightbox com ESC
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        lightbox.classList.remove("open");
+        lightbox.setAttribute("aria-hidden", "true");
+      }
+    });
 
 
 
