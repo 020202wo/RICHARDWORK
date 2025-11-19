@@ -1,186 +1,152 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ricardo Francisco | Richards Work Fotografias</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700;800&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --bg: #080909;
-      --card: #0f1112aa;
-      --accent: #00d0d6;
-      --muted: #a8b3b8;
-      --glass: rgba(255, 255, 255, 0.04);
-      --glass-2: rgba(255, 255, 255, 0.02);
-    }
-    * { box-sizing: border-box; margin:0; padding:0; font-family:"Inter", system-ui, Arial; }
-    html, body { height:100%; background: linear-gradient(180deg, #070809 0%, #0b0c0d 70%); color:#e9eef0; scroll-behavior:smooth; }
-
-    nav {
-      position: fixed; top:0; left:0; right:0; padding:10px 20px; display:flex; justify-content:space-between; align-items:center; z-index:999;
-      backdrop-filter: blur(8px); background: rgba(8,9,9,0.75); border-bottom:1px solid rgba(255,255,255,0.05);
-    }
-    .brand { display:flex; align-items:center; gap:12px; }
-    .logo { width:50px; height:50px; border-radius:12px; background: linear-gradient(135deg,var(--accent),#3b82f6); display:flex; justify-content:center; align-items:center; font-weight:800; font-size:1.5rem; box-shadow:0 6px 20px rgba(0,0,0,0.6); }
-    .brand h4 { font-size:1rem; color: var(--accent); }
-    .brand p { font-size:0.75rem; color:var(--muted); }
-
-    .nav-actions { display:flex; align-items:center; gap:12px; }
-    .nav-btn { background:var(--glass); backdrop-filter:blur(6px); border-radius:999px; padding:8px 14px; color:var(--accent); border:1px solid rgba(0,0,0,0.4); cursor:pointer; display:flex; align-items:center; gap:6px; font-size:0.85rem; }
-    .menu { display:flex; gap:6px; }
-    .hamburger { display:none; background:var(--glass); padding:8px; border-radius:10px; cursor:pointer; }
-
-    header { height:100vh; display:flex; align-items:center; justify-content:center; padding:20px; position:relative; overflow:hidden; }
-    .slider { width:100%; height:100%; position:absolute; top:0; left:0; z-index:1; overflow:hidden; border-radius:0; }
-    .slide { width:100%; height:100%; background-size:cover; background-position:center; position:absolute; top:0; left:100%; transition:1s ease; opacity:0; }
-    .slide.active { left:0; opacity:1; }
-
-    .hero-content { position:relative; z-index:2; max-width:1100px; width:100%; display:flex; flex-direction:column; gap:20px; text-align:center; color:#fff; }
-    .hero-content h1 { font-size:3rem; line-height:1.1; }
-    .hero-content p { color:var(--muted); font-size:1.1rem; margin-top:10px; }
-    .cta-row { display:flex; justify-content:center; gap:12px; margin-top:20px; flex-wrap:wrap; }
-    .btn { padding:12px 18px; border-radius:12px; border:none; cursor:pointer; font-weight:600; font-size:0.95rem; transition:0.3s; }
-    .btn-primary { background:linear-gradient(90deg,var(--accent),#3b82f6); color:#041018; box-shadow:0 10px 30px rgba(0,208,214,0.12); }
-    .btn-primary:hover { transform:translateY(-3px); }
-    .btn-ghost { background:transparent; border:1px solid rgba(255,255,255,0.06); color:var(--muted); }
-    .btn-ghost:hover { background:var(--glass); }
-
-    main { max-width:1100px; margin:40px auto; padding:0 20px; }
-    .section-card { background: linear-gradient(180deg, var(--glass), transparent); border-radius:12px; padding:18px; margin-bottom:20px; border:1px solid rgba(255,255,255,0.03); overflow:hidden; }
-    .section-title { display:flex; justify-content:space-between; align-items:center; cursor:pointer; }
-    .section-title h2 { font-size:1.4rem; color:#fff; }
-    .chev { color: var(--accent); transition: transform 0.35s; }
-
-    .collapsible { max-height:0; overflow:hidden; transition:max-height 0.6s ease; }
-    .collapsible.open { max-height:1500px; }
-
-    .about { display:flex; flex-direction:row; gap:20px; align-items:flex-start; flex-wrap:wrap; }
-    .about img { width:180px; border-radius:10px; object-fit:cover; }
-    .about p { color:var(--muted); line-height:1.6; }
-
-    .gallery-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:12px; margin-top:14px; }
-    .thumb { position:relative; border-radius:10px; overflow:hidden; cursor:pointer; }
-    .thumb img { width:100%; height:220px; object-fit:cover; transition:0.35s; }
-    .thumb::after { content:""; position:absolute; inset:0; background:linear-gradient(180deg, transparent, rgba(0,0,0,0.35)); opacity:0; transition:0.3s; }
-    .thumb:hover img { transform:scale(1.08); filter:brightness(0.95); }
-    .thumb:hover::after { opacity:1; }
-    .thumb .tag { position:absolute; left:10px; bottom:10px; background: rgba(0,0,0,0.45); padding:6px 8px; border-radius:999px; font-size:0.85rem; }
-
-    .prices { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:12px; margin-top:12px; }
-    .price-card { background: linear-gradient(180deg, #071014, #071217); padding:12px; border-radius:12px; border:1px solid rgba(255,255,255,0.02); }
-    .price-card h4 { color: var(--accent); margin-bottom:6px; }
-    .price-card p { color: var(--muted); font-size:0.95rem; }
-
-    .contact-row { display:flex; gap:12px; flex-wrap:wrap; margin-top:12px; }
-    .contact-card { display:flex; gap:12px; align-items:center; background:var(--glass-2); padding:10px; border-radius:12px; border:1px solid rgba(255,255,255,0.02); transition:0.3s; text-decoration:none; color:inherit; }
-    .contact-card:hover { transform:translateY(-2px); background:var(--glass); }
-
-    footer { max-width:1100px; margin:40px auto 60px; padding:0 20px; color:var(--muted); text-align:center; }
-
-    /* Lightbox */
-    .lightbox { position:fixed; inset:0; background:rgba(2,6,23,0.85); display:flex; align-items:center; justify-content:center; z-index:2000; opacity:0; pointer-events:none; transition:opacity 0.25s; flex-direction:column; color:var(--accent); font-size:2rem; font-weight:700; }
-    .lightbox.open { opacity:1; pointer-events:auto; }
-    .lightbox-inner { max-width:90vw; max-height:80vh; border-radius:12px; overflow:hidden; display:flex; align-items:center; justify-content:center; }
-    .lightbox img { max-width:100%; max-height:100%; object-fit:contain; }
-
-    @media (max-width:900px){ .hero-content h1{font-size:2rem;} .hero-content p{font-size:1rem;} .menu{display:none;} .hamburger{display:block;} }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Richards Work | Fotografia Profissional</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+<style>
+:root {
+  --bg:#0a0a0a;
+  --accent:#00d0d6;
+  --muted:#aaa;
+  --card:#111;
+  --glass:rgba(255,255,255,0.05);
+}
+*{margin:0;padding:0;box-sizing:border-box;font-family:"Inter",sans-serif;}
+body{background:var(--bg);color:#fff;scroll-behavior:smooth;}
+nav{position:fixed;top:0;width:100%;display:flex;justify-content:space-between;align-items:center;padding:10px 20px;background:var(--glass);backdrop-filter:blur(8px);z-index:1000;border-bottom:1px solid rgba(255,255,255,0.05);}
+nav .logo{font-size:1.5rem;font-weight:800;color:var(--accent);}
+nav .menu{display:flex;gap:12px;}
+nav .menu a{color:#fff;text-decoration:none;font-weight:500;padding:6px 12px;border-radius:8px;transition:0.3s;}
+nav .menu a:hover{background:var(--accent);color:#000;}
+header{height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;text-align:center;}
+header::after{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0.5),rgba(0,0,0,0.7));}
+header .hero{position:relative;z-index:2;max-width:1000px;}
+header .hero h1{font-size:3rem;margin-bottom:20px;color:var(--accent);}
+header .hero p{font-size:1.2rem;color:#ccc;margin-bottom:30px;}
+header .hero .btns{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;}
+header .hero .btn{padding:12px 20px;border-radius:10px;border:none;font-weight:600;cursor:pointer;transition:0.3s;}
+header .hero .btn-primary{background:linear-gradient(90deg,var(--accent),#3b82f6);color:#000;}
+header .hero .btn-primary:hover{transform:translateY(-3px);}
+header .hero .btn-ghost{background:transparent;color:#fff;border:1px solid #555;}
+header .hero .btn-ghost:hover{background:var(--accent);color:#000;}
+.slider{position:absolute;inset:0;z-index:1;overflow:hidden;}
+.slide{width:100%;height:100%;background-size:cover;background-position:center;position:absolute;top:0;left:100%;opacity:0;transition:1s;}
+.slide.active{left:0;opacity:1;}
+main{max-width:1200px;margin:40px auto;padding:0 20px;display:flex;flex-direction:column;gap:40px;}
+.section{padding:20px;background:var(--card);border-radius:15px;border:1px solid rgba(255,255,255,0.05);}
+.section h2{color:var(--accent);margin-bottom:20px;font-size:1.8rem;text-align:center;}
+.about{display:flex;flex-wrap:wrap;gap:20px;align-items:center;}
+.about img{flex:1 1 250px;border-radius:12px;object-fit:cover;}
+.about p{flex:2 1 400px;color:var(--muted);line-height:1.6;font-size:1rem;}
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:15px;}
+.gallery img{width:100%;height:200px;object-fit:cover;border-radius:12px;cursor:pointer;transition:0.3s;}
+.gallery img:hover{transform:scale(1.05);filter:brightness(0.9);}
+.prices{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px;}
+.price-card{background:var(--glass);padding:15px;border-radius:12px;text-align:center;border:1px solid rgba(255,255,255,0.05);}
+.price-card h3{color:var(--accent);margin-bottom:10px;}
+.price-card p{color:#ccc;margin-bottom:10px;font-size:0.95rem;}
+.contact{display:flex;flex-wrap:wrap;gap:15px;justify-content:center;}
+.contact a{display:flex;align-items:center;gap:10px;padding:12px 18px;border-radius:12px;background:var(--glass);border:1px solid rgba(255,255,255,0.05);text-decoration:none;color:#fff;transition:0.3s;}
+.contact a:hover{background:var(--accent);color:#000;}
+footer{text-align:center;color:var(--muted);margin:40px 0;}
+@media(max-width:900px){header .hero h1{font-size:2rem;}header .hero p{font-size:1rem;}}
+</style>
 </head>
 <body>
-  <nav>
-    <div class="brand">
-      <div class="logo">R</div>
-      <div>
-        <h4>Ricardo Francisco</h4>
-        <p>Richards Work Fotografias</p>
-      </div>
-    </div>
-    <div class="nav-actions">
-      <div class="menu">
-        <button class="nav-btn" data-target="sobre"><i class="fa-solid fa-user"></i>Sobre</button>
-        <button class="nav-btn" data-target="empresa"><i class="fa-solid fa-briefcase"></i>Empresa</button>
-        <button class="nav-btn" data-target="galeria"><i class="fa-solid fa-images"></i>Galeria</button>
-        <button class="nav-btn" data-target="servicos"><i class="fa-solid fa-tags"></i>Preços</button>
-        <button class="nav-btn" data-target="contato"><i class="fa-solid fa-envelope"></i>Contato</button>
-      </div>
-      <a class="nav-btn" href="https://www.facebook.com/a.magia.da.fotografia.2025/" target="_blank">
-        <i class="fa-brands fa-facebook-f"></i> Facebook
-      </a>
-      <button class="hamburger" id="hamb"><i class="fa-solid fa-ellipsis-vertical"></i></button>
-    </div>
-  </nav>
 
-  <header>
-    <div class="slider">
-      <div class="slide active" style="background-image:url('imaj/capa.jpg');"></div>
-      <div class="slide" style="background-image:url('imaj/ar.jpg');"></div>
-      <div class="slide" style="background-image:url('imaj/estudio.jpg');"></div>
-    </div>
-    <div class="hero-content">
-      <h1>Ricardo Francisco</h1>
-      <p>Transformando momentos em memórias desde 2020. <strong>Richards Work</strong> presta serviços fotográficos para casamentos, estúdio, sessões ao ar livre e cobertura de eventos com edição profissional.</p>
-      <div class="cta-row">
-        <button class="btn btn-primary" data-target="galeria"><i class="fa-solid fa-images"></i> Ver Galeria</button>
-        <button class="btn btn-ghost" data-target="contato"><i class="fa-solid fa-phone"></i> Contactar</button>
-      </div>
-    </div>
-  </header>
-
-  <main>
-    <!-- Conteúdos iguais aos seus originais (Sobre, Empresa, Galeria, Preços, Contato) -->
-    <!-- Mantive sua estrutura, só adicionei classes e responsividade moderna -->
-  </main>
-
-  <footer>
-    Desenvolvido por Ricardo Francisco — 2025 © Todos os direitos reservados
-  </footer>
-
-  <!-- LIGHTBOX -->
-  <div id="lightbox" class="lightbox">
-    <div class="lightbox-loading">Richards Work</div>
-    <div class="lightbox-inner"><img src="" alt="Imagem ampliada" /></div>
+<nav>
+  <div class="logo">R</div>
+  <div class="menu">
+    <a href="#sobre">Sobre</a>
+    <a href="#galeria">Galeria</a>
+    <a href="#precos">Preços</a>
+    <a href="#contato">Contacto</a>
   </div>
+</nav>
 
-  <script>
-    // Slider automático
-    const slides = document.querySelectorAll(".slide");
-    let currentSlide = 0;
-    setInterval(() => {
-      slides[currentSlide].classList.remove("active");
-      currentSlide = (currentSlide + 1) % slides.length;
-      slides[currentSlide].classList.add("active");
-    }, 5000);
+<header>
+  <div class="slider">
+    <div class="slide active" style="background-image:url('imaj/capa.jpg');"></div>
+    <div class="slide" style="background-image:url('imaj/ar.jpg');"></div>
+    <div class="slide" style="background-image:url('imaj/estudio.jpg');"></div>
+  </div>
+  <div class="hero">
+    <h1>Richards Work</h1>
+    <p>Fotografia Profissional | Casamentos | Eventos | Estúdio | Publicidade</p>
+    <div class="btns">
+      <button class="btn btn-primary" onclick="document.getElementById('galeria').scrollIntoView({behavior:'smooth'})">Ver Galeria</button>
+      <button class="btn btn-ghost" onclick="document.getElementById('contato').scrollIntoView({behavior:'smooth'})">Contactar</button>
+    </div>
+  </div>
+</header>
 
-    // toggle collapsibles
-    document.querySelectorAll("[data-toggle]").forEach(btn=>{
-      btn.addEventListener("click",()=>{
-        const id=btn.getAttribute("data-toggle");
-        const content=document.getElementById(id+"-c");
-        const open=content.classList.contains("open");
-        document.querySelectorAll(".collapsible").forEach(c=>c.classList.remove("open"));
-        document.querySelectorAll(".chev").forEach(ch=>ch.style.transform="rotate(0deg)");
-        if(!open){content.classList.add("open"); btn.querySelector(".chev")?.style.setProperty("transform","rotate(180deg)"); setTimeout(()=>content.scrollIntoView({behavior:"smooth", block:"start"}),120);}
-      });
-    });
+<main>
+  <section id="sobre" class="section about">
+    <img src="imaj/richard.jpg" alt="Ricardo Francisco">
+    <p>Sou Ricardo Francisco, fotógrafo profissional com paixão por capturar momentos inesquecíveis. Na Richards Work, oferecemos serviços de fotografia para casamentos, eventos, estúdio e publicidade, sempre com edição profissional para transformar memórias em arte.</p>
+  </section>
 
-    // nav buttons scroll
-    document.querySelectorAll(".nav-btn[data-target]").forEach(b=>{
-      b.addEventListener("click",()=>document.querySelector('[data-toggle="'+b.getAttribute("data-target")+'"]')?.click());
-    });
+  <section id="galeria" class="section">
+    <h2>Galeria</h2>
+    <div class="gallery">
+      <img src="imaj/foto1.jpg" alt="Foto 1">
+      <img src="imaj/foto2.jpg" alt="Foto 2">
+      <img src="imaj/foto3.jpg" alt="Foto 3">
+      <img src="imaj/foto4.jpg" alt="Foto 4">
+      <img src="imaj/foto5.jpg" alt="Foto 5">
+    </div>
+  </section>
 
-    // lightbox
-    const lightbox = document.getElementById("lightbox"), lbimg = lightbox.querySelector("img"), loadingText = lightbox.querySelector(".lightbox-loading");
-    document.querySelectorAll(".thumb").forEach(t=>{
-      t.addEventListener("click",()=>{
-        const src = t.getAttribute("data-src") || t.querySelector("img").src;
-        lbimg.style.display="none"; loadingText.style.display="block"; lightbox.classList.add("open");
-        setTimeout(()=>{ lbimg.src=src; lbimg.onload=()=>{ loadingText.style.display="none"; lbimg.style.display="block"; }; }, 800);
-      });
-    });
-    lightbox.addEventListener("click",e=>{if(e.target===lightbox||e.target===lbimg){lightbox.classList.remove("open");}});
-    document.addEventListener("keydown",e=>{if(e.key==="Escape") lightbox.classList.remove("open");});
-  </script>
+  <section id="precos" class="section prices">
+    <h2>Preços</h2>
+    <div class="prices">
+      <div class="price-card">
+        <h3>Casamentos</h3>
+        <p>Desde 20.000 MZN</p>
+      </div>
+      <div class="price-card">
+        <h3>Eventos</h3>
+        <p>Desde 10.000 MZN</p>
+      </div>
+      <div class="price-card">
+        <h3>Estúdio</h3>
+        <p>Desde 5.000 MZN</p>
+      </div>
+      <div class="price-card">
+        <h3>Publicidade</h3>
+        <p>Desde 15.000 MZN</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contato" class="section contact">
+    <h2>Contacto</h2>
+    <div class="contact">
+      <a href="tel:+258xxxxxxxxx"><i class="fa-solid fa-phone"></i> +258 xx xxx xxxx</a>
+      <a href="mailto:richardswork@gmail.com"><i class="fa-solid fa-envelope"></i> richardswork@gmail.com</a>
+      <a href="https://www.facebook.com/a.magia.da.fotografia.2025/" target="_blank"><i class="fa-brands fa-facebook-f"></i> Facebook</a>
+      <a href="https://www.instagram.com/" target="_blank"><i class="fa-brands fa-instagram"></i> Instagram</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  Desenvolvido por Ricardo Francisco © 2025
+</footer>
+
+<script>
+// Slider automático
+const slides = document.querySelectorAll(".slide");
+let currentSlide = 0;
+setInterval(() => {
+  slides[currentSlide].classList.remove("active");
+  currentSlide = (currentSlide + 1) % slides.length;
+  slides[currentSlide].classList.add("active");
+}, 5000);
+</script>
+
 </body>
 </html>
